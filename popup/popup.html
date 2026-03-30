@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost Pop Crosslister</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="./popup.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Ghost Pop Suite</p>
+        <h1>Crosslister</h1>
+      </div>
+      <div class="motif">x -> 4</div>
+    </header>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Draft</h2>
+        <button id="newDraftBtn" class="ghost-btn" type="button">New</button>
+      </div>
+
+      <label class="draft-picker">
+        Saved Drafts
+        <select id="draftSelect"></select>
+      </label>
+
+      <div id="draftMeta" class="status">0 photos saved.</div>
+
+      <form id="listingForm" class="form">
+        <label>
+          Title
+          <input id="title" name="title" maxlength="80" required>
+        </label>
+
+        <label>
+          Description
+          <textarea id="description" name="description" rows="5" required></textarea>
+        </label>
+
+        <label>
+          Condition
+          <select id="condition" name="condition">
+            <option value="new_with_tags">New with tags</option>
+            <option value="excellent">Excellent</option>
+            <option value="good" selected>Good</option>
+            <option value="fair">Fair</option>
+          </select>
+        </label>
+
+        <div class="grid">
+          <label>
+            Depop Price
+            <input id="priceDepop" name="priceDepop" type="number" min="0" step="0.01">
+          </label>
+          <label>
+            Vinted Price
+            <input id="priceVinted" name="priceVinted" type="number" min="0" step="0.01">
+          </label>
+        </div>
+
+        <div class="grid">
+          <label>
+            Poshmark Price
+            <input id="pricePoshmark" name="pricePoshmark" type="number" min="0" step="0.01">
+          </label>
+          <label>
+            eBay Price
+            <input id="priceEbay" name="priceEbay" type="number" min="0" step="0.01">
+          </label>
+        </div>
+
+        <div class="grid">
+          <label>
+            Depop Category
+            <input id="categoryDepop" name="categoryDepop">
+          </label>
+          <label>
+            Vinted Category
+            <input id="categoryVinted" name="categoryVinted">
+          </label>
+        </div>
+
+        <div class="grid">
+          <label>
+            Poshmark Category
+            <input id="categoryPoshmark" name="categoryPoshmark">
+          </label>
+          <label>
+            eBay Category
+            <input id="categoryEbay" name="categoryEbay">
+          </label>
+        </div>
+
+        <label>
+          Hashtags
+          <input id="hashtags" name="hashtags" placeholder="vintage, levis, denim">
+        </label>
+
+        <label>
+          Photos
+          <input id="photos" name="photos" type="file" accept="image/*" multiple>
+        </label>
+
+        <div class="checkboxes">
+          <label><input type="checkbox" name="platform" value="depop" checked> Depop</label>
+          <label><input type="checkbox" name="platform" value="vinted" checked> Vinted</label>
+          <label><input type="checkbox" name="platform" value="poshmark" checked> Poshmark</label>
+          <label><input type="checkbox" name="platform" value="ebay"> eBay beta</label>
+        </div>
+
+        <div class="actions">
+          <button id="saveBtn" type="submit">Save Draft</button>
+          <button id="queueBtn" type="button" class="ghost-btn">Queue Jobs</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Activity</h2>
+        <span id="queueCount" class="badge">0 queued</span>
+      </div>
+      <div id="statusText" class="status">No draft loaded.</div>
+      <div id="logList" class="log-list"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./popup.js"></script>
+</body>
+</html>

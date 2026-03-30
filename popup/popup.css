@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 400px;
+  background:
+    radial-gradient(circle at top right, rgba(29, 158, 117, 0.18), transparent 35%),
+    linear-gradient(180deg, #111214 0%, var(--bg) 100%);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.shell {
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.header,
+.section-head,
+.actions,
+.grid,
+.checkboxes {
+  display: flex;
+  gap: 10px;
+}
+
+.header,
+.section-head,
+.actions {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow,
+.motif,
+.badge {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--muted);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 14px;
+}
+
+.motif,
+.badge {
+  color: var(--accent);
+}
+
+.card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(34, 35, 38, 0.96), rgba(26, 26, 28, 0.96));
+  box-shadow: var(--shadow);
+}
+
+.form,
+.log-list {
+  display: grid;
+  gap: 10px;
+}
+
+.draft-picker {
+  margin-bottom: 10px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+
+input,
+select,
+textarea,
+button {
+  border-radius: 12px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  color: var(--text);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.grid label {
+  flex: 1;
+}
+
+.checkboxes {
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button {
+  border: 1px solid transparent;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+
+.ghost-btn {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.status {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.log-item {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 12px;
+}

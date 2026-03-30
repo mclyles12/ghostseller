@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost Pop Crosslister Settings</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="./options.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="panel">
+      <p class="eyebrow">Ghost Pop Suite</p>
+      <h1>Crosslister Settings</h1>
+      <p class="copy">Queue pacing, beta toggles, and future auth controls live here.</p>
+    </section>
+
+    <section class="panel">
+      <form id="settingsForm" class="form">
+        <label>
+          Queue interval in minutes
+          <input id="queueIntervalMinutes" name="queueIntervalMinutes" type="number" min="1" step="1">
+        </label>
+
+        <label class="inline">
+          <input id="ebayBetaEnabled" name="ebayBetaEnabled" type="checkbox">
+          Enable eBay beta
+        </label>
+
+        <label class="inline">
+          <input id="autoSubmit" name="autoSubmit" type="checkbox">
+          Allow submit messages after fill
+        </label>
+
+        <button type="submit">Save Settings</button>
+      </form>
+
+      <div id="status" class="status"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./options.js"></script>
+</body>
+</html>
