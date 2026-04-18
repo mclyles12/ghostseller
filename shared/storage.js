@@ -50,54 +50,67 @@ export function getListingKey(id) {
   return `xlist_listing_${id}`;
 }
 
-export async function getSettings() {
-  const stored = await chrome.storage.local.get(STORAGE_KEYS.settings);
+export function getSettings() {
+  const stored = localStorage.getItem(STORAGE_KEYS.settings);
   return {
     ...DEFAULT_SETTINGS,
-    ...(stored[STORAGE_KEYS.settings] || {})
+    ...(stored ? JSON.parse(stored) : {})
   };
 }
 
-export async function setSettings(nextSettings) {
-  await chrome.storage.local.set({
-    [STORAGE_KEYS.settings]: nextSettings
-  });
+export function setSettings(nextSettings) {
+  localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(nextSettings));
   return nextSettings;
 }
 
-export async function saveListing(listing) {
+export function saveListing(listing) {
   const nextListing = {
     ...listing,
     updatedAt: Date.now()
   };
 
-  await chrome.storage.local.set({
-    [getListingKey(nextListing.id)]: nextListing
-  });
+  localStorage.setItem(getListingKey(nextListing.id), JSON.stringify(nextListing));
 
-  try {
-    await chrome.storage.sync.set({
-      [getListingKey(nextListing.id)]: {
-        ...nextListing,
-        photos: []
-      }
-    });
-  } catch (error) {
-    console.warn("sync mirror failed", error);
-  }
-
+  // For web, no sync mirror
   return nextListing;
 }
 
-export async function getListing(id) {
-  const stored = await chrome.storage.local.get(getListingKey(id));
-  return stored[getListingKey(id)] || null;
+export function getListing(id) {
+  const stored = localStorage.getItem(getListingKey(id));
+  return stored ? JSON.parse(stored) : null;
 }
 
-export async function getAllListings() {
-  const all = await chrome.storage.local.get(null);
-  return Object.entries(all)
-    .filter(([key]) => key.startsWith("xlist_listing_"))
+export function getAllListings() {
+  const listings = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith("xlist_listing_")) {
+      const stored = localStorage.getItem(key);
+      if (stored) {
+        listings.push(JSON.parse(stored));
+      }
+    }
+  }
+  return listings;
+}
+
+export async function getQueue() {
+  const stored = localStorage.getItem(STORAGE_KEYS.queue);
+  return stored ? JSON.parse(stored) : [];
+}
+
+export async function setQueue(queue) {
+  localStorage.setItem(STORAGE_KEYS.queue, JSON.stringify(queue));
+}
+
+export async function getLog() {
+  const stored = localStorage.getItem(STORAGE_KEYS.log);
+  return stored ? JSON.parse(stored) : [];
+}
+
+export async function setLog(log) {
+  localStorage.setItem(STORAGE_KEYS.log, JSON.stringify(log));
+}
     .map(([, value]) => value)
     .sort((a, b) => b.updatedAt - a.updatedAt);
 }
